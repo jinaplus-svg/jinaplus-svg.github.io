@@ -4,7 +4,7 @@ import os
 
 SITE_NAME = "고기타임"
 SITE_TAGLINE = "부위별 고기 굽는 시간·온도 가이드"
-SITE_URL = "https://example.com"  # 배포 시 실제 도메인으로 교체
+SITE_URL = "https://jinaplus-svg.github.io/gogi-time"
 
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -243,7 +243,7 @@ def nav_html(active_href=""):
     return "\n      ".join(items)
 
 
-def page_shell(title, description, keywords, body_html, active_href="", extra_head=""):
+def page_shell(title, description, keywords, body_html, active_href="", extra_head="", path=""):
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -252,7 +252,7 @@ def page_shell(title, description, keywords, body_html, active_href="", extra_he
 <title>{title} | {SITE_NAME}</title>
 <meta name="description" content="{description}">
 <meta name="keywords" content="{keywords}">
-<link rel="canonical" href="{SITE_URL}/">
+<link rel="canonical" href="{SITE_URL}/{path}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:type" content="website">
@@ -325,7 +325,7 @@ def render_guide_page(g):
   <p><a class="cta" href="calculator.html">→ 내 고기 무게로 직접 계산해보기</a></p>
 </article>
 """
-    return page_shell(g["title"], g["desc"], g["keywords"], body)
+    return page_shell(g["title"], g["desc"], g["keywords"], body, path=f"{g['slug']}.html")
 
 
 def render_index():
@@ -350,7 +350,7 @@ def render_index():
 </section>
 """
     return page_shell(f"{SITE_NAME} - {SITE_TAGLINE}", SITE_TAGLINE + ". 소고기·돼지고기·닭고기·양고기·생선 굽는 시간과 온도를 한눈에.",
-                       "고기 굽는 시간, 스테이크 굽기, 삼겹살 굽기, 닭가슴살 굽기", body, active_href="index.html")
+                       "고기 굽는 시간, 스테이크 굽기, 삼겹살 굽기, 닭가슴살 굽기", body, active_href="index.html", path="")
 
 
 def render_about():
@@ -364,7 +364,7 @@ def render_about():
   <p>문의: contact@example.com</p>
 </article>
 """
-    return page_shell("사이트 소개", f"{SITE_NAME} 소개 페이지입니다.", "고기타임 소개", body, active_href="about.html")
+    return page_shell("사이트 소개", f"{SITE_NAME} 소개 페이지입니다.", "고기타임 소개", body, active_href="about.html", path="about.html")
 
 
 def render_privacy():
@@ -379,7 +379,7 @@ def render_privacy():
   <p>본 방침은 사전 고지 없이 변경될 수 있습니다. 최종 수정일: 2026년 9월.</p>
 </article>
 """
-    return page_shell("개인정보처리방침", f"{SITE_NAME} 개인정보처리방침입니다.", "개인정보처리방침", body, active_href="")
+    return page_shell("개인정보처리방침", f"{SITE_NAME} 개인정보처리방침입니다.", "개인정보처리방침", body, active_href="", path="privacy.html")
 
 
 def render_calculator():
@@ -474,7 +474,7 @@ document.getElementById('calcBtn').addEventListener('click', () => {
 </script>
 """
     return page_shell("고기 굽기 시간 계산기", "고기 종류와 두께·무게를 입력하면 예상 굽기 시간을 계산해줍니다.",
-                       "고기 굽기 계산기, 스테이크 시간 계산", body, active_href="calculator.html")
+                       "고기 굽기 계산기, 스테이크 시간 계산", body, active_href="calculator.html", path="calculator.html")
 
 
 def write(path, content):
