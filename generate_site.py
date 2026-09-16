@@ -249,6 +249,7 @@ def page_shell(title, description, keywords, body_html, active_href="", extra_he
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-adsense-account" content="ca-pub-9998958180062429">
 <title>{title} | {SITE_NAME}</title>
 <meta name="description" content="{description}">
 <meta name="keywords" content="{keywords}">
