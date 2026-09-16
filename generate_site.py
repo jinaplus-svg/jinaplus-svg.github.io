@@ -4,7 +4,7 @@ import os
 
 SITE_NAME = "고기타임"
 SITE_TAGLINE = "부위별 고기 굽는 시간·온도 가이드"
-SITE_URL = "https://jinaplus-svg.github.io/gogi-time"
+SITE_URL = "https://jinaplus-svg.github.io"
 
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
