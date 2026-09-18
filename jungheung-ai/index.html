@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스마트 중흥메이커스 - AI에게 부탁하기</title>
+<style>
+:root{
+  --bg:#FCF6EA; --surface:#FFFFFF; --surface-2:#FFFDF6;
+  --text:#2E2A22; --sub:#7A7263; --border:#E8DFC8;
+  --accent:#2E6E8E; --accent-ink:#FFFFFF;
+  --step1:#2E6E8E; --step2:#3F8A5C; --step3:#B5486F;
+}
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&display=swap');
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Gowun Dodum','Malgun Gothic',sans-serif;
+  line-height:1.65;
+}
+.wrap{max-width:700px;margin:0 auto;padding:28px 20px 60px;}
+
+header.hero{text-align:center;padding:8px 0 22px;}
+header.hero .brand{
+  color:var(--accent); font-weight:700; font-size:1rem;
+  letter-spacing:0.02em; margin:0 0 6px;
+}
+header.hero h1{
+  font-family:'Gaegu',cursive; font-weight:700;
+  font-size:2.5rem; margin:0 0 10px; text-wrap:balance;
+  color:var(--text);
+}
+header.hero p{
+  color:var(--sub); font-size:1.05rem; margin:0 auto; max-width:520px;
+}
+
+.attend{
+  background:var(--surface); border:2px solid var(--accent);
+  border-radius:18px; padding:22px 22px 20px; margin:24px 0 30px;
+}
+.attend h2{
+  font-family:'Gaegu',cursive; font-size:1.4rem; margin:0 0 8px; font-weight:700;
+  color:var(--accent);
+}
+.attend p{margin:0 0 14px; font-size:0.98rem; color:var(--text);}
+.attend iframe{
+  width:100%; height:640px; border:1px solid var(--border); border-radius:12px;
+  background:#fff;
+}
+
+.howto{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:18px; padding:20px 22px; margin:24px 0 32px;
+}
+.howto h2{
+  font-family:'Gaegu',cursive; font-size:1.3rem; margin:0 0 14px; font-weight:700;
+}
+.howto ol{margin:0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:12px;}
+.howto li{display:flex; align-items:flex-start; gap:12px; font-size:1rem;}
+.howto .num{
+  flex:none; width:30px; height:30px; border-radius:50%;
+  background:var(--accent); color:var(--accent-ink);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Gaegu',cursive; font-weight:700; font-size:1.05rem;
+}
+
+.step{
+  background:var(--surface); border:1px solid var(--border);
+  border-left:6px solid var(--step-c);
+  border-radius:16px; padding:24px 24px 22px; margin-bottom:28px;
+}
+.step-1{--step-c:var(--step1)}
+.step-2{--step-c:var(--step2)}
+.step-3{--step-c:var(--step3)}
+
+.step-head{display:flex; align-items:center; gap:14px; margin-bottom:10px;}
+.step-badge{
+  flex:none; width:42px; height:42px; border-radius:50%;
+  background:var(--step-c); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Gaegu',cursive; font-weight:700; font-size:1.4rem;
+}
+.step-head h3{margin:0; font-size:1.25rem; font-weight:700;}
+.step-tag{
+  display:inline-block; margin-top:2px; font-size:0.8rem; color:var(--step-c);
+  font-weight:700;
+}
+
+.step p.desc{margin:6px 0 16px; color:var(--text); font-size:1.02rem;}
+.step p.hint{margin:10px 0 0; color:var(--sub); font-size:0.92rem;}
+
+.promptbox{
+  position:relative; background:var(--surface-2); border:1px solid var(--border);
+  border-radius:12px; padding:16px 16px 14px;
+}
+.promptbox textarea{
+  width:100%; border:none; background:transparent; resize:none;
+  color:var(--text); font-family:'Gowun Dodum','Malgun Gothic',sans-serif;
+  font-size:0.98rem; line-height:1.6; min-height:64px; max-height:280px;
+  overflow-y:auto;
+}
+.step-3 .promptbox textarea{max-height:320px; font-size:0.86rem;}
+
+.copybtn{
+  margin-top:12px; width:100%; border:none; border-radius:12px;
+  background:var(--step-c); color:#fff; font-weight:700;
+  font-size:1.05rem; padding:14px; cursor:pointer;
+  font-family:'Gowun Dodum','Malgun Gothic',sans-serif;
+  transition:opacity .15s;
+}
+.copybtn:active{opacity:0.8;}
+.copybtn.done{background:var(--text); color:var(--bg);}
+
+footer{text-align:center; color:var(--sub); font-size:0.85rem; margin-top:36px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <p class="brand">스마트 중흥메이커스</p>
+    <h1>AI에게 부탁하기</h1>
+    <p>어려운 말 몰라도 괜찮아요. 아래 세 가지를 순서대로 그대로 따라 해보세요.</p>
+  </header>
+
+  <section class="attend">
+    <h2>오늘 교육 출석부</h2>
+    <p>이름, 전화번호, 주소를 적어주세요.</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf1Dz2U4jguDIFNbbmK8DpKVPuPoecb7YpRwu5FyYcO9gmmgg/viewform?embedded=true">로드 중…</iframe>
+  </section>
+
+  <div class="howto">
+    <h2>사용하는 방법</h2>
+    <ol>
+      <li><span class="num">1</span><span>아래 색깔 버튼을 <b>한 번</b> 누르면 글이 복사돼요.</span></li>
+      <li><span class="num">2</span><span>쓰고 있는 AI 앱(챗GPT, 제미나이 등)을 열어요.</span></li>
+      <li><span class="num">3</span><span>대화 입력창을 손가락으로 <b>길게 눌러서</b> "붙여넣기"를 눌러요.</span></li>
+    </ol>
+  </div>
+
+  <section class="step step-1">
+    <div class="step-head">
+      <div class="step-badge">1</div>
+      <div>
+        <h3>아파트 공지문 읽어주기</h3>
+        <span class="step-tag">글자가 빽빽한 안내문, 고지서에 딱</span>
+      </div>
+    </div>
+    <p class="desc">아파트에 붙은 안내문이나 관리비 고지서를 사진으로 찍어서 AI에게 보여주면, 어려운 말을 쉬운 말로 바꿔서 정리해줘요.</p>
+    <div class="promptbox">
+      <textarea readonly id="p1">이 사진 속 글자를 전부 읽어 주세요. 어려운 단어는 쉬운 말로 바꾸고, 언제까지 무엇을 해야 하는지 중요한 내용만 간단히 정리해서 알려주세요.</textarea>
+    </div>
+    <button class="copybtn" data-target="p1">이 글 복사하기</button>
+    <p class="hint">먼저 사진을 AI 앱에 올린 다음, 이 글을 함께 보내주세요.</p>
+  </section>
+
+  <section class="step step-2">
+    <div class="step-head">
+      <div class="step-badge">2</div>
+      <div>
+        <h3>유튜브 영상 요약해주기</h3>
+        <span class="step-tag">긴 영상, 안 보고 미리 알아보기</span>
+      </div>
+    </div>
+    <p class="desc">보고 싶은 유튜브 영상 주소(링크)를 AI에게 보여주면, 영상을 다 안 봐도 무슨 내용인지 먼저 알려줘요.</p>
+    <div class="promptbox">
+      <textarea readonly id="p2">이 유튜브 영상 주소를 보고, 어떤 내용인지 쉬운 말로 설명해 주세요. 중요한 부분만 간단히 정리해 주세요.
+
+(여기에 유튜브 링크를 붙여넣으세요)</textarea>
+    </div>
+    <button class="copybtn" data-target="p2">이 글 복사하기</button>
+    <p class="hint">유튜브 앱이나 영상 화면에서 "공유 → 링크 복사"로 주소를 먼저 복사해두세요.</p>
+  </section>
+
+  <section class="step step-3">
+    <div class="step-head">
+      <div class="step-badge">3</div>
+      <div>
+        <h3>나는 어떤 사람인지 알아보기</h3>
+        <span class="step-tag">오늘의 하이라이트</span>
+      </div>
+    </div>
+    <p class="desc">내 사진 한 장과 이 글을 함께 AI에게 주면, 지금까지 AI와 나눈 대화를 바탕으로 "나는 평소에 어떻게 말하고 행동하는 사람인지" 손으로 그린 듯한 그림 포스터로 재미있게 보여줘요.</p>
+    <div class="promptbox">
+      <textarea readonly id="p3">Create a highly personalized viral SNS identity poster based on the current user's actual AI interaction history.
+
+Analyze the user only from behavioral evidence found in their conversations:
+
+wording
+recurring ways of asking
+revision patterns
+aesthetic decisions
+emotional tone
+contradictions
+habits of collaboration with AI
+things they repeatedly correct, reject, emphasize, or return to
+patterns that appear across multiple conversations
+
+Do not use a generic personality template.
+Do not infer a trait merely because it is common among "power users," "creatives," "developers," "researchers," or other stereotyped user types.
+Do not invent hobbies, professions, interests, props, symbols, workflows, or personality traits without conversational evidence.
+When evidence is weak, omit the observation rather than filling the space.
+The poster should feel impossible to reuse for another person by simply changing the face.
+
+---
+
+SUBJECT REFERENCE
+
+Use the second attached photo of the user as the primary appearance reference.
+
+Preserve recognizable real characteristics from the reference photo:
+face shape
+hairstyle and hair volume
+eyes and eyebrows
+nose and mouth proportions
+body impression
+clothing details when useful
+watch or accessories if visible
+
+Do not beautify the user into a handsome idol.
+Convert the person into a simple, slightly awkward, charming hand-drawn character that still clearly resembles the reference person.
+The character should feel psychologically specific rather than conventionally cute.
+
+Expression:
+calm but observant, slightly tired, slightly skeptical, as if constantly noticing something that could be adjusted.
+
+Pose should be inferred from the behavioral analysis rather than chosen as a generic portrait pose.
+
+---
+
+VISUAL STYLE
+
+Use a hand-drawn Korean notebook infographic / doodle portrait style.
+The image should resemble one large sheet of warm white or off-white paper photographed or scanned flat.
+
+Everything appears drawn directly on paper using:
+thin black ballpoint pen
+fine felt-tip pen
+slightly shaky human lines
+irregular handwritten Korean lettering
+rough cross-hatching
+imperfect circles and rectangles
+hand-drawn arrows
+small diagrams
+check marks
+marginal notes
+underlines
+scribbles
+
+The illustration should deliberately feel human-made rather than digitally polished.
+
+No glossy rendering.
+No anime cel shading.
+No realistic 3D lighting.
+No cinematic effects.
+No polished vector graphics.
+No fashion-ad composition.
+
+Use mostly black ink and warm white paper.
+Pastel pencil or highlighter accents may appear sparingly where they improve hierarchy.
+They should look physically applied to paper rather than digitally filled.
+
+---
+
+CENTRAL CHARACTER
+
+Place one hand-drawn character portrait near the center.
+The character may be seated or standing depending on what best expresses the inferred personality.
+
+Use slightly naïve anatomy:
+slightly oversized head
+compact body
+simple hands and feet
+believable but imperfect proportions
+
+Use loose pen hatching for darker hair and clothing.
+Leave substantial portions of the paper visually open.
+Add only subtle facial color if useful.
+The portrait should resemble a personal sketch made by a talented colleague, not a commercial mascot.
+
+---
+
+PAGE COMPOSITION
+
+Build the poster as a dense but readable personal observation notebook page.
+The structure of the page must emerge from the user's actual behavioral patterns.
+
+Do not automatically include standard personality-infographic sections.
+Do not add a chart, checklist, workflow, diagram, statistic, warning label, or symbolic object unless it represents something actually observed in the conversation history.
+Let repeated behaviors determine which visual structures deserve space.
+
+Arrange handwritten observations organically around the central portrait.
+Avoid rigid corporate grids.
+The page should feel accumulated through observation rather than assembled from a template.
+Keep the overall composition readable on a mobile screen.
+
+---
+
+MAIN TITLE
+
+At the top, write one large handwritten Korean title.
+The title should sound like something an observant colleague would naturally write after watching this particular person work.
+Under it, add one short Korean sentence summarizing the strongest recurring pattern found in the interaction history.
+Do not use a generic personality-summary sentence.
+
+---
+
+FIVE LARGE PERSONALITY PHRASES
+
+Include exactly 5 large handwritten Korean phrases.
+These are the most important textual elements after the title.
+Each must come from a behavioral pattern that is clearly supported by the user's interaction history.
+
+Each phrase should be:
+specific
+witty
+revealing
+slightly uncomfortable in its accuracy
+understandable without explanation
+difficult to apply to a random person
+
+Prefer observations about how this person actually behaves over abstract labels describing what kind of person they are.
+Avoid MBTI-like wording, motivational language, occupational stereotypes, or universal "perfectionist" jokes.
+Do not create a phrase merely to fill one of the five slots.
+Each phrase should visually receive its own handwritten emphasis.
+Exactly five. No more.
+
+---
+
+SMALLER KOREAN NOTES
+
+Add short handwritten observations around the portrait.
+Every note must correspond to something visible in the user's conversational behavior.
+
+Prefer concrete observations such as:
+a recurring form of instruction
+something repeatedly corrected
+an unusual degree of specificity
+a contradiction between stated intent and actual behavior
+a repeated escalation pattern
+an identifiable collaboration habit
+a distinctive way of rejecting outputs
+a recognizable linguistic habit
+
+Do not include a category simply because personality posters normally contain it.
+Do not turn the notes into long paragraphs.
+
+---
+
+SYMBOLIC DOODLES
+
+Use symbolic doodles only when they represent something directly supported by the user's actual history.
+A doodle should function as evidence or visual shorthand, not decoration.
+If no meaningful symbol is supported by the conversations, leave that area as handwriting, lines, or empty paper instead.
+Do not use generic productivity, technology, research, office, or lifestyle symbols merely because they fit the poster aesthetic.
+
+---
+
+"AI GOT TIRED OF THIS HUMAN" HIDDEN LAYER
+
+Add a smaller secondary annotation layer that feels as though an exhausted AI secretly reviewed the finished poster afterward.
+
+Visually imply:
+"AI got tired of this human."
+
+Use red pen and messy marginal interventions such as:
+circles
+corrections
+arrows
+underlines
+crossed-out fragments
+handwritten "오류"
+handwritten "경고"
+exclamation marks
+irritated AI doodles or speech bubbles when contextually justified
+
+The humor must come from the user's actual interaction habits.
+Each roast comment should refer to something the user genuinely tends to do in conversation.
+Do not recycle stock jokes about endless revisions, perfectionism, overengineering, long prompts, or checking sources unless those behaviors are clearly demonstrated in the available history.
+The roast should feel like the AI remembers specific recurring experiences with this person.
+
+Tone:
+funny, exhausted, irritated, observant, indirectly affectionate.
+Never insult immutable personal characteristics.
+
+---
+
+TEXT RULES
+
+All visible poster text must be Korean, except unavoidable technical terms.
+Korean handwriting must be legible.
+Prefer short phrases over long paragraphs.
+Avoid meaningless pseudo-Korean characters.
+Avoid duplicated sentences.
+Do not invent numerical statistics.
+If the evidence does not support a number, express the observation verbally or visually instead.
+
+Most importantly:
+Never sacrifice behavioral accuracy just to make the page look fuller.
+Empty space is preferable to invented personality.
+
+---
+
+FINAL FEEL
+
+The finished image should feel as if:
+someone who has actually worked with this person for a long time secretly documented their habits on one enormous sheet of paper,
+then an AI that has dealt with the same person repeatedly came back with a red pen and added irritated corrections.
+
+The humor should come from recognition.
+The specificity should come from evidence.
+The visual density should come from genuine observations, not from filling predefined infographic categories.
+
+It should feel human-made, psychologically sharp, personal, slightly exposing, funny, unsentimental, and highly shareable.
+
+A viewer who knows the person should think:
+"이거 진짜 저 사람 얘기인데?"
+
+A viewer who does not know the person should still sense that the poster could not have been generated for somebody else.</textarea>
+    </div>
+    <button class="copybtn" data-target="p3">이 글 복사하기</button>
+    <p class="hint">내 얼굴이 잘 나온 사진 한 장을 AI 앱에 먼저 올리고, 이 글을 통째로 복사해서 함께 보내보세요.</p>
+  </section>
+
+  <footer>스마트 중흥메이커스와 함께하는 오늘 AI 교육 🙂</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copybtn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const ta = document.getElementById(btn.dataset.target);
+    try {
+      await navigator.clipboard.writeText(ta.value);
+    } catch (e) {
+      ta.removeAttribute('readonly');
+      ta.select();
+      try { document.execCommand('copy'); } catch (e2) {}
+      ta.setAttribute('readonly', 'true');
+    }
+    const original = btn.textContent;
+    btn.textContent = '복사됐어요! ✓';
+    btn.classList.add('done');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('done'); }, 2200);
+  });
+});
+</script>
+</body>
+</html>
