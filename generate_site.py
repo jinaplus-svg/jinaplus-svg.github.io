@@ -250,6 +250,7 @@ def page_shell(title, description, keywords, body_html, active_href="", extra_he
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-adsense-account" content="ca-pub-9998958180062429">
+<meta name="naver-site-verification" content="4d4276eb90133b03378f5240e9ea892d529d4240" />
 <title>{title} | {SITE_NAME}</title>
 <meta name="description" content="{description}">
 <meta name="keywords" content="{keywords}">
