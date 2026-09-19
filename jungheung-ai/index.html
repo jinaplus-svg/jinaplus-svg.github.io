@@ -98,6 +98,16 @@ header.hero p{
 .step p.desc{margin:6px 0 16px; color:var(--text); font-size:1.02rem;}
 .step p.hint{margin:10px 0 0; color:var(--sub); font-size:0.92rem;}
 
+.examplebox{
+  background:var(--surface-2); border:1px solid var(--border); border-radius:12px;
+  padding:14px; margin-bottom:16px; text-align:center;
+}
+.examplebox img{
+  max-width:260px; width:100%; border-radius:8px; border:1px solid var(--border);
+  display:block; margin:0 auto 8px;
+}
+.examplebox span{font-size:0.88rem; color:var(--sub); font-weight:700;}
+
 .promptbox{
   position:relative; background:var(--surface-2); border:1px solid var(--border);
   border-radius:12px; padding:16px 16px 14px;
@@ -159,6 +169,10 @@ footer{text-align:center; color:var(--sub); font-size:0.85rem; margin-top:36px;}
       </div>
     </div>
     <p class="desc">아파트에 붙은 안내문이나 관리비 고지서를 사진으로 찍어서 AI에게 보여주면, 어려운 말을 쉬운 말로 바꿔서 정리해줘요.</p>
+    <div class="examplebox">
+      <img src="notice-example.jpg" alt="아파트 게시판 안내문 예시 사진">
+      <span>예시: 이런 게시판 안내문 사진이면 돼요</span>
+    </div>
     <div class="promptbox">
       <textarea readonly id="p1">이 사진 속 글자를 전부 읽어 주세요. 어려운 단어는 쉬운 말로 바꾸고, 언제까지 무엇을 해야 하는지 중요한 내용만 간단히 정리해서 알려주세요.</textarea>
     </div>
